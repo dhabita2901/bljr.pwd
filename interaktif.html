@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Interaktif</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 50px;
+      background-color: #f0f8ff;
+    }
+    h1 {
+      color: #333;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    #itemList {
+      margin-top: 20px;
+      padding-left: 20px;
+    }
+    li {
+      margin: 5px 0;
+      transition: all 0.3s ease;
+    }
+    li:hover {
+      color: darkblue;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tambah Item ke Daftar</h1>
+  <input type="text" id="itemInput" placeholder="Ketik sesuatu..." />
+  <button id="addItemBtn">Tambah</button>
+
+  <ul id="itemList"></ul>
+
+  <script>
+    const input = document.getElementById('itemInput');
+    const button = document.getElementById('addItemBtn');
+    const list = document.getElementById('itemList');
+
+    button.addEventListener('click', function() {
+      const value = input.value.trim();
+      if (value !== '') {
+        const li = document.createElement('li');
+        li.textContent = value;
+
+        li.addEventListener('click', function() {
+          list.removeChild(li);
+        });
+
+        list.appendChild(li);
+        input.value = ''; 
+      }
+    });
+
+    input.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        button.click();
+      }
+    });
+  </script>
+
+</body>
+</html>
